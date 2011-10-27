@@ -1,1 +1,71 @@
-This file was created by IntelliJ IDEA 10.5.2 for binding GitHub repository
+Readme
+
+********************************************************************************************************************************************************************
+Submitted by:
+Aanchal Arora (aa3027) and Anusha Bhatnagar(ab3421) 
+
+********************************************************************************************************************************************************************
+
+Files Submitted:
+1) ADB3 zipped Project folder
+2)Readme File
+3)Integrated Dataset CSV file
+4)Example-run.txt
+
+********************************************************************************************************************************************************************
+ How to run your program
+
+1)Import the project in Ecilpse.
+2) Run the main file.
+3)In the command line specification enter the CSV file name,minimum support and confidence values.
+4) The large itemsets along with association rules are generates in output.txt.
+
+*********************************************************************************************************************************************************************
+Detailed description about dataset and its Interestingness:
+
+We have used the Online directory of certified businesses with a detailed profile for creating our INTEGRATED-DATASET file. This file was called Small Business Services (SBS) MWBE Dataset that provides a comprehensive list of certified Minority and Women-owned Business Enterprises (M/WBEs), Emerging Business Enterprises (EBEs), and or Locally-based Enterprises (LBEs) throughout the New York City tri-state area. It also provides detailed information on certified companies, including a brief description of their work history and contact information.
+
+The only refinement we did to refine it to out INTEGRATED DATASET was to remove the superflous attributes/columns like job description,address,email of Clients for a particular vendor and also teh vendor name.
+
+So,now the INTEGRATED DATASET contains only what is the list of job clients for a list of vendors of Small Business Services.We would apply Association mining Rules (Section 2.1 of the Agrawal and Srikant paper in VLDB 1999) to implement the Apriori Algorithm and determine the large itemsets of Clients for various vendors and generate the high-confidence association rules, in decreasing order of confidence, reporting the support and confidence of each rule (e.g., [item1] => [item2] (Conf: 100%, Supp: 7.4626%)).
+
+
+Through generating these confidence rules,we can determine which Clients(Organisations and Corporates) are appearing together,implying that they have similar interests and needs for vendors.Through these rules,the vendors can determine which job clients they must target for profit.This can be used for taking important business decision.The association rukes geberated can aid the vendors in decsion making.
+
+NOTE: Since the dataset has very varying values for the clients and there are large number of such values,it program would show an output only for support between 0.01 and 0.03.
+
+***********************************************************************************************************************************************************************
+Internal Design of the Project:
+
+We are using the Original implementation of Apriori Algorithm for generating association rules as specified in paper(Fast  Algorithms  for  Mining  Association  Rules by Agarwal,Srikant).
+
+The project primarily comprises of the following class files:
+1. Record : This is the primary datastructure class where we store the sets created for each transaction and maintains it in a list of such hashmaps with their count.The setters and get functions are specified.
+2.adb3 : The main class where we create the objects of all other classes and call functions to read the input file,generate sets,calculate supports and generate rules and confidence.
+3.Process_Confidence :It mainly has functions for generating sets for confidence keeping in mind the min_conf.
+4.Process: We read the CSV file,store the itemsets in hashmaps and calculate the support for each of them.We further prune down the itemsets with those satisfying the min_sup. 
+**********************************************************************************************************************************************************************
+Command Line specification:
+
+You must specify the minimum support and minimum confidence along with the CSV file.
+
+run as integrateddata 0.026 0.9
+
+The output is given as:
+
+[School Construction Authority] , 3.3731854%
+[NYC Fire Dept] , 3.2450898%
+[AMP Construction]=>School Construction Authority (Confidence=100.0% ,Support=2.6046114%) 
+
+Through these results,we can interpret that School Construction Authority and NYC Fire Dept. are ppopular clients in Small Business services with a support of 3.37% and 3.24%. There is high confidence that a vendor dealing with AMP Construction also deals with School Construction Authority. 
+
+
+*********************************************************************************************************************************************************************
+ADDITIONAL INFORMATION:
+Due to the nature of the orginal dataset that has very varying values for the clients and there are large number of such values,it program would show an output only for support between 0.01 and 0.028.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//END of File
+
